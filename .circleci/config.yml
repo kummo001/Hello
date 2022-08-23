@@ -16,7 +16,8 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            make install
+            pip install --upgrade pip &&\
+		          pip install -r requirements.txt
       - save_cache:
           paths:
             - ./venv
@@ -26,7 +27,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            make lint
+            pylint --disable=R,C hello.py
 workflows:
   default-workflow:
     jobs:
